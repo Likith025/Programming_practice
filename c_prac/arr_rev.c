@@ -28,8 +28,9 @@ void arr_rev(int* arr,int size){
     int temp;
     for(int i=0;i<(size/2)+1;i++){
         temp=arr[i];
-        arr[i]=arr[(size-i)];
-        arr[(size-i)]=temp;
+        arr[i]=arr[(size-1-i)];
+
+        arr[(size-i-1)]=temp;
     }
 }
 
@@ -45,5 +46,6 @@ int main(){
     arr_rev(arr,size);
     printf("array after reversal\n");
     arr_print(arr,size);
+    while(1);
 
 }
