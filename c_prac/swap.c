@@ -10,22 +10,6 @@ void swap_arith(int num1 , int num2){
 
 void swap_bit(int num1 , int num2){
     num1=num1^num2;
-    num2=num1^num2;         //can use ^ in place of +/-
-    num1=num1^num2;
-    printf("after swapping using bitwise approach num1=%d and num2=%d\n",num1,num2);
-
-}
-
-void swap_bit(int num1 , int num2){
-    num1=num1^num2;
-    num2=num1^num2;         //can use ^ in place of +/-
-    num1=num1^num2;
-    printf("after swapping using bitwise approach num1=%d and num2=%d\n",num1,num2);
-
-}
-
-void swap_bit(int num1 , int num2){
-    num1=num1^num2;
     num2=num1^num2;         
     num1=num1^num2;
     printf("after swapping using bitwise approach num1=%d and num2=%d\n",num1,num2);
