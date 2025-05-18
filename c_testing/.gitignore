@@ -1,0 +1,25 @@
+# Build artifacts
+*.exe
+*.out
+*.obj
+*.gcda
+*.gcno
+*.gcov
+*.html
+*.css
+
+
+# Coverage reports
+coverage.html
+cal_coverage.html
+
+# VS Code settings
+.vscode/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
