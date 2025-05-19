@@ -1,0 +1,16 @@
+# Ignore compiled files
+*.o
+*.obj
+*.exe
+*.dll
+*.out
+*.so
+
+# Ignore core dumps
+core
+
+# Ignore build directories
+/build/
+/bin/
+/debug/
+/release/
