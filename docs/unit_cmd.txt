@@ -1,0 +1,1 @@
+make SRC=src/other.c TEST=tests/unit/test_other.c REPORT=other_coverage.html
