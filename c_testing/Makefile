@@ -18,4 +18,4 @@ coverage: test
 	python -m gcovr -r . --filter "$(SRC)" --html-details -o $(REPORT)
 
 clean:
-	rm -f $(TARGET) *.gcda *.gcno *.gcov $(REPORT)
+	rm -f $(TARGET) *.gcda *.html *.css *.gcno *.gcov $(REPORT)
