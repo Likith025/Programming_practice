@@ -1,28 +1,39 @@
 
 #include <stdint.h>
 
-
 int main(void)
 {
-	//LED is connected to PB14
-	//button is connected to PC13
-	uint32_t *pclk= (uint32_t*) 0x40023830;// this is the address rcc reg for AHB1
-	uint32_t *pGPIOB_mode=(uint32_t*)0x40020400;// address of MODER reg of port b
-	uint32_t *pGPIOB_op=(uint32_t*)0x40020414;// address of output reg of port b
-	uint32_t *pGPIOC_mode= (uint32_t*) 0x40020800;//address of moder reg of port c
-	uint32_t *pGPIOC_in=(uint32_t*) 0x40020810;// address of input reg of port c
-	volatile uint8_t button_status;
-	*pclk=*pclk|(3<<1);// setting up rcc for GPIO B and C
-
-	*pGPIOB_mode=*pGPIOB_mode &~(3 << (28));//Resetting MODER reg for port B
-	*pGPIOB_mode=*pGPIOB_mode |(1<<28);//Setting MODER reg for port B
-
-	*pGPIOC_mode=*pGPIOC_mode &~(3<<26);//resetting moder reg is same as setting as input
+    uint32_t volatile *rcc_ahb1 = (uint32_t*) 0x40023830;
+    uint32_t volatile *gpiob_moder = (uint32_t*) 0x40020400;
+    uint32_t volatile *gpiob_odr = (uint32_t*) 0x40020414;
+    uint32_t volatile *gpioc_moder = (uint32_t*) 0x40020800;
+    uint32_t volatile *gpioc_idr = (uint32_t*) 0x40020810;
 
 
+    volatile uint8_t button_status;
 
-    while (1){
+    // Enable GPIOB and GPIOC clocks
+    *rcc_ahb1 |= (3 << 1); // Bit 1 for GPIOB, Bit 2 for GPIOC
 
-    	button_status=	(uint8_t)((*pGPIOC_in)&(1<<13));
+    // Set PB14 as output
+    *gpiob_moder &= ~(3 << 28);
+    *gpiob_moder |=  (1 << 28);
+
+    // Set PC13 as input
+    *gpioc_moder &= ~(3 << 26);
+
+
+    while (1)
+    {
+        button_status = (uint8_t)((*gpioc_idr >> 13) & 0x1);
+
+        if (button_status)  // Active-low button press
+        {
+            *gpiob_odr |= (1 << 14);  // LED ON
+        }
+        else
+        {
+            *gpiob_odr &= ~(1 << 14); // LED OFF
+        }
     }
 }
