@@ -2,7 +2,7 @@
 #include<stdint.h>
 
 
-
+#define  MAX_STUDENTS   10
 
 typedef struct{
     int roll_no;
@@ -12,17 +12,17 @@ typedef struct{
 
 } student_data;
 
-student_data student_list[10];
+student_data student_list[MAX_STUDENTS];
 
 
 
 void add_records(){
     int temp;
-    for(int i=0;i<10;i++){
+    for(int i=0;i<MAX_STUDENTS;i++){
         if(student_list[i].roll_no==0){
             printf("enter the roll number \n");
-            scanf("%u",&temp);
-            for(int j=0;j<10;j++){
+            scanf("%d",&temp);
+            for(int j=0;j<MAX_STUDENTS;j++){
                 if(temp==student_list[j].roll_no){
                     printf("This is a duplicate data,\n****************\n");
                     return;
@@ -32,7 +32,7 @@ void add_records(){
             printf("enter the student name\n");
             scanf("%s",student_list[i].name);
             printf("enter the current year\n");
-            scanf("%u",&student_list[i].year);
+            scanf("%d",&student_list[i].year);
             printf("data logged sucessfully \n ****************\n");
             return;
         }
@@ -41,33 +41,29 @@ void add_records(){
 
 }
 
-void display_records(){
+void display_records() {
+    int found = 0; // flag to check if any data is found
 
-    for(int i=0;i<10;i++){
-        if(student_list[i].roll_no==0){
-            if(i==0){
-                printf("no data to display \n ****************\n");
-            }
-            
-            
-        
-        else{
-            printf("roll_number:%d\n",student_list[i].roll_no);
-            printf("student_name:%s\n",student_list[i].name);
-            printf("current_year:%d\n",student_list[i].year);
-
+    for (int i = 0; i < MAX_STUDENTS; i++) {
+        if (student_list[i].roll_no != 0) {
+            found = 1;
+            printf("roll_number: %d\n", student_list[i].roll_no);
+            printf("student_name: %s\n", student_list[i].name);
+            printf("current_year: %d\n", student_list[i].year);
+            printf("****************\n");
         }
     }
-    }
-    return;
 
+    if (!found) {
+        printf("No data to display.\n****************\n");
+    }
 }
 
 void delete_records(){
     int roll_number;
     printf("enter the roll number of student to remove data\n");
-    scanf("%d",roll_number);
-    for(int i=0;i<10;i++){
+    scanf("%d",&roll_number);
+    for(int i=0;i<MAX_STUDENTS;i++){
         if(student_list[i].roll_no==roll_number){
             student_list[i]=student_list[i+1];
 
