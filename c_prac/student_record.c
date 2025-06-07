@@ -59,24 +59,33 @@ void display_records() {
     }
 }
 
-void delete_records(){
+void delete_records() {
+    int removed = 0;
     int roll_number;
     printf("enter the roll number of student to remove data\n");
-    scanf("%d",&roll_number);
-    for(int i=0;i<MAX_STUDENTS;i++){
-        if(student_list[i].roll_no==roll_number){
-            student_list[i]=student_list[i+1];
-
-        }
-        
-        
+    if (scanf("%d", &roll_number) != 1) {
+        while(getchar() != '\n'); // clear buffer
+        printf("Invalid input.\n");
+        return;
     }
-    student_list[9].name[0]="\0";
-    student_list[9].roll_no=0;
-    student_list[9].year=0;
-    return;
-
-    
+    for (int i = 0; i < MAX_STUDENTS; i++) {
+        if (student_list[i].roll_no == roll_number) {
+            // Shift all records up to fill the gap
+            for (int j = i; j < MAX_STUDENTS - 1; j++) {
+                student_list[j] = student_list[j + 1];
+            }
+            // Clear the last record
+            student_list[MAX_STUDENTS - 1].roll_no = 0;
+            student_list[MAX_STUDENTS - 1].name[0] = '\0';
+            student_list[MAX_STUDENTS - 1].year = 0;
+            removed = 1;
+            printf("Record deleted successfully.\n");
+            break;
+        }
+    }
+    if (!removed) {
+        printf("data to remove not found \n");
+    }
 }
 
 uint8_t menu_display(){
@@ -117,13 +126,5 @@ int main(){
             printf("enter a valid input \n");
             break;
         }
-        
-
-
-
     }
-
-
-
-
 }
