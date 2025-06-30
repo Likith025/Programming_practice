@@ -13,7 +13,7 @@ void stack_init(stack_data* stack,int size);
 void stack_push(stack_data* stack,int value);
 void stack_display(stack_data* stack);
 void stack_pop(stack_data* stack);
-
+void stack_rev(stack_data* stack);
 
 
 
@@ -26,7 +26,9 @@ int main(){
     stack_push(&s1,12);
     stack_push(&s1,13);
     stack_display(&s1);
-    stack_pop(&s1);
+    // stack_pop(&s1);
+   //stack_display(&s1);
+    stack_rev(&s1);
     stack_display(&s1);
     return 0;
 }
@@ -59,10 +61,21 @@ void stack_display(stack_data* stack){
 void stack_pop(stack_data* stack){
     if (stack->top <= 0) {
         printf("Stack Underflow\n");
-        return ; // error code
+        return ; 
     }
     stack->top--;
     printf("%d is poped from stack\n",stack->stack[stack->top]);    
 }
 
+void stack_rev(stack_data* stack){
+    int temp;
+    for(int i=0;i<(stack->top)/2;i++){
+
+        temp=stack->stack[i];
+        stack->stack[i]=stack->stack[(stack->top)-1-i];
+        stack->stack[(stack->top)-1-i]=temp;
+    }
+
+
+ }
 
