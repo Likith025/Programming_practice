@@ -5,6 +5,7 @@
 *.dll
 *.out
 *.so
+*.s
 
 # Ignore core dumps
 core

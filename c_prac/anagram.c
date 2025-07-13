@@ -6,8 +6,8 @@
 int anagram_check(char *str_1,char *str_2){
     int char_freq_1[26]={0};
     int char_freq_2[26]={0};
-    // str_1=tolower(str_1);
-    // str_2=tolower(str_2);
+
+    
     if(strlen(str_1)!=strlen(str_2)){
         printf("both words are not anagram case 1\n");
         return 0;
