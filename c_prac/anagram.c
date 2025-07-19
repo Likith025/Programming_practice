@@ -12,9 +12,9 @@ int anagram_check(char *str_1,char *str_2){
         printf("both words are not anagram case 1\n");
         return 0;
     }
-    for(int i=0;i<=strlen(str_1);i++){
+    for(int i=0;i<strlen(str_1);i++){
         char_freq_1[str_1[i]-'a']++;
-        char_freq_2[str_1[i]-'a']++;
+        char_freq_2[str_2[i]-'a']++;
     }
 
     for(int j=0;j<26;j++){
@@ -29,6 +29,20 @@ int anagram_check(char *str_1,char *str_2){
 
 
 }
+void anagram_check_2(char* str_1,char* str_2){
+    int arr[256]={0};
+
+    if(strlen(str_1)!=strlen(str_2))
+    {
+        printf("lengths of the string does not match \n");
+        return;
+    }
+
+    for(int i=0)
+    
+
+}
+
 
 int main(){
     char str_1[50];

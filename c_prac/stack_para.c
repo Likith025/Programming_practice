@@ -1,40 +1,25 @@
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 
-typedef struct stack_pointer
+typedef struct stack
 {
-    int *stack;
+    char *s;
     int top;
     int size;
-}stack_data;
+}stack;
 
-
-void stack_init(stack_data* stack,int size);
-void stack_push(stack_data* stack,int value);
-void stack_display(stack_data* stack);
-void stack_pop(stack_data* stack);
-void stack_rev(stack_data* stack);
-
-
-
-
+void stack_init(stack*,int);
+void push_stack(stack*,char);
 
 int main(){
-    stack_data s1;
-    stack_init(&s1,10);
-    stack_push(&s1,11);
-    stack_push(&s1,12);
-    stack_push(&s1,13);
-    stack_display(&s1);
-    // stack_pop(&s1);
-   //stack_display(&s1);
-    stack_rev(&s1);
-    stack_display(&s1);
-    free(s1.stack);
+    stack s1;
+    printf("started\n");
+    stack_init(&s1,5);
+
     return 0;
 }
 
-void stack_init(stack_data* stack,int size){
+void stack_init(stack* stack,int size){
     stack->stack= (int *)malloc(size*sizeof(int));
     stack->size=size;
     stack->top=-1;
@@ -67,16 +52,3 @@ void stack_pop(stack_data* stack){
     stack->top--;
     printf("%d is poped from stack\n",stack->stack[stack->top]);    
 }
-
-void stack_rev(stack_data* stack){
-    int temp;
-    for(int i=0;i<(stack->top)/2;i++){
-
-        temp=stack->stack[i];
-        stack->stack[i]=stack->stack[(stack->top)-1-i];
-        stack->stack[(stack->top)-1-i]=temp;
-    }
-
-
- }
-
