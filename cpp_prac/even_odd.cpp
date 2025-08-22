@@ -1,9 +1,8 @@
 #include<iostream>
-#include<cctype>
 using namespace std;
 int main(){
     char num;
-    cout << "enter the number to check" << endl;
+    cout << "enter the number to check\a" << endl;
     cin >> num;
     if(isdigit(num)){
     if(num & 0x1){
