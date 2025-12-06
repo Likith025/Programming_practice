@@ -11,15 +11,19 @@ int* arr_read(int size){
         printf("enter %d elements for array\n",size);
         for(int i=0;i<size;i++){
             scanf("%d",&arr[i]);
+           // printf("Row base address = %p\n", arr);
         }
+        printf("Row base address = %p\n", arr);
+
     }
     return arr;
 }
 
 int** create_2d_arr(int rows,int col){
-    int **arr = (int**) malloc(rows*(sizeof(int)));
+    int **arr = (int**) malloc(rows*(sizeof(int*)));
     for(int i=0;i<rows;i++){
         arr[i]=arr_read(col);
+        printf("&arr[%d] = %p   arr[%d] = %p\n", i, &arr[i], i, arr[i]);
     }
     return arr;
 }
@@ -32,6 +36,13 @@ void print_2d_arr(int** arr,int rows,int col){
         printf("\n");
     }
 }
+void free_2d_arr(int** arr,int row){
+    for(int i=0;i<row;i++){
+        free(arr[i]);
+
+    }
+    free(arr);
+}
 
 int main()
 {
@@ -43,4 +54,6 @@ int main()
     scanf("%d",&col);
     arr= create_2d_arr(rows,col);
     print_2d_arr(arr,rows,col);
+    free_2d_arr(arr,rows);
+    return 0;
 }
